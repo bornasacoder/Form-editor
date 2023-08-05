@@ -1,8 +1,8 @@
 import axios from "axios"
-import { getUserFailure, getUserStart, getUserSuccess, loginFailure, loginStart, loginSuccess } from "../redux/userRedux";
+import { getUserFailure, getUserStart, getUserSuccess,} from "../redux/userRedux";
 export const authenticateSignup = async(user) =>{
     try{
-        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}userapp/auth/register`, user)
+        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/userapp/auth/register`, user)
         return res;
     }catch(err){
         return err;
@@ -12,7 +12,7 @@ export const authenticateSignup = async(user) =>{
 export const authenticateLogin = async(user) =>{
 
     try{
-        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}userapp/auth/login`, user);
+        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/userapp/auth/login`, user);
         // console.log(res)
         if(res?.data?.status==='SUCCESS'){
             // console.log(res)
@@ -34,7 +34,7 @@ const TOKEN = localStorage.getItem("auth-token")
     dispatch(getUserStart());
     try{
          
-        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}userapp/auth/get`,
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/userapp/auth/get`,
        {
         headers: {"auth-token": TOKEN}
     });

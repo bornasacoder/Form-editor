@@ -9,19 +9,20 @@ import { useEffect } from 'react';
 import { getUser } from './mocks/auth';
 
 function App() {
+  const user  = useSelector((state)=>state?.user)
+  console.log(user)
   const dispatch = useDispatch()
+  // const navigate = useNavigate()
   useEffect(()=>{
     getUser(dispatch)
-  }, [])
- const user  = useSelector((state)=>state?.user)
- console.log(user)
+  }, [dispatch])
   return (
     <div className="App">
     <Router>
     <Routes>
      
-    {user && user.currentCustomer == null && <Route exact path='/login' element={<Login/>} />} 
-   {user && user?.currentCustomer !==null && <Route exact path='/' element={<Home />} /> }
+    <Route exact path='/login' element={<Login/>} /> 
+ <Route exact path='/' element={ user.currentCustomer !==null ? <Home /> : <Login/>} /> 
     
     <Route exact path='/signup' element={<Signup/>} /> 
     <Route exact path='/formsetting' element={<FormSetting  /> } />

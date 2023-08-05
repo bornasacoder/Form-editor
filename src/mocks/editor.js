@@ -5,7 +5,7 @@ export const addForm = async(dispatch, data) =>{
     const TOKEN = localStorage.getItem("auth-token")
     dispatch(addEditorStart());
     try{
-        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}userapp/create`,data,
+        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/userapp/create`,data,
        {
         headers: {"auth-token": TOKEN}
     });
@@ -29,7 +29,7 @@ export const updateForm = async(dispatch,id, data) =>{
     const TOKEN = localStorage.getItem("auth-token")
     dispatch(updateEditorStart());
     try{
-        const res = await axios.put(`${process.env.REACT_APP_BASE_URL}userapp/update/${id}`,data,
+        const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/userapp/update/${id}`,data,
        {
         headers: {"auth-token": TOKEN}
     });
